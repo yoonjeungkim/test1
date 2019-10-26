@@ -1,0 +1,13 @@
+HTML의 역사
+
+- world wide web = www
+
+- HYPER TEXT MARKUP LANGUAGE
+- 문서와 문서를 링크를 통해 연결하는 것
+
+
+- 파란색->태그
+- 연두색->속성
+- 주황색->속성값
+- 요소라고 한다.
+- <!-- : 주석

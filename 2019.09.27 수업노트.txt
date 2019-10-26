@@ -1,0 +1,320 @@
+@ 페이지 영역 분할 태그
+
+@ <div></div>
+-> block 형식의 공간을 분할 (수직으로 공간분할)
+-> 공간 단위로!
+
+@ <span></span>
+-> inline형식의 공간을 분할 (수평으로 공간분할)
+-> Text 단위로
+
+@ html4 페이지 구조
+-> html4에서 페이지 구조는 <div>, <span> 태그를 이용, 구역을 설정하고 거기에 id값을 넣어
+   구분
+
+단점
+-> 사용자마다 id값을 다르게 부여하여 구조를 이해하는데 어려움, 구조 파악이 어려워 차후
+   유지 보수에 어려움이 있음
+-> 검색엔진이 웹 소스를 확인할 때도, 메뉴, 본문 구별이 어려움
+   다양한 기기에서 이해하기에 구조가 복잡함
+
+
+@html5 페이지 구조
+-> 시맨틱 태그를 사용함
+ - 페이지 구조를 특정 기능에 맞는 태그로 사용하여 구분
+ - 페이지 구조를 쉽게 파악하고 좀 더 정확한 정보를 검색할 수 있게 함
+ - header, section, footer, ...
+-> 웹 접근성이 용이함
+ - 장애인, 고령자 등이 웹사이트에서 제공하는 정보에 비장애인과 동등하게 접근하고 이해할 수
+   있도록 보장
+
+<header></header>
+-> 특정 부분의 머리말로 주로 검색어(form), 메뉴(nav)를 넣음
+ - <nav></nav>
+ - 다른 사이트나 페이지로 이동하는 태그를 모아 놓은 태그
+ - 특정 태그에 종속되지 않고 어느 곳에서나 사용할 수 있음
+ - 주로 메뉴, footer의 사이트 링크 모음에 많이 쓰임
+
+<section></section>
+-> 웹 문서에서 컨텐츠가 들어가는 영역, 컨텐츠를 주제별로 묶을 때 사용
+-> <section>태그 안에 <section>태그를 넣을 수 있음
+-> 주제별로 article을 묶어주는 태그
+	- <article></article>
+	- 웹 페이지의 내용이 들어가는 영역
+	- 이 태그 영역은 다른 곳으로 배포하거나 재사용 가능
+	- 검색 엔진은 이 태그가 사용된 컨텐츠는 배포할 수 있는 컨텐츠로 인식
+
+<aside></aside>
+-> 사이드 바라고 부름
+-> 본문 외의 기타내용을 담고 있는 영역
+-> 주로 광고를 달거나 링크모음 등을 표현
+
+<footer></footer>
+-> 웹 페이지의 맨 아래쪽에 위치하며, 회사소개, 저작권, 연락처(<address>태그)등의 정보 표시
+-> <footer>에는 <header>, <section>, <article> 등 다른 레이아웃 사용 가능
+
+@ 멀티미디어 태그
+1. <img/>
+-> 웹 페이지에 사진이나 그림을 삽입할 때 사용하는 태그
+
+속성
+src	: 삽입할 이미지 경로를 지정하는 속성
+alt	: 이미지를 설명해주는 텍스트 속성
+width, height : 이미지의 크기를 설정하는 속성
+
+작성법
+<img src="경로" alt="설명 문구" width="넓이" height="높이">
+
+## 웹페이지 사용 가능한 확장자
+GIF : 파일의 크기가 작아 아이콘이나 블릿 기호에 많이 사용, 투명한 배경이나 움직이는 이미지를
+만들 수 있음
+JPG/JPEG : 사진을 위해 개발, 저장을 반복하다 보면 화질이 떨어질 수 있음.
+PNG : 네트워크용으로 개발되어 많이 이용함
+
+2. 이미지 맵 (<map> </map> <area>)
+-> 이미지를 구역별로 나누어 링크를 걸어주는 태그
+-> <img>태그에 usemap 속성을 지정해야함
+
+속성
+alt	: 대체 텍스트 지정
+coords	: 분할할 지역 좌표 지정(시작,끝)
+href	: 링크 페이지 경로 지정
+media	: 링크 페이지 최적화 미디어 지정
+rel	: 현재 페이지, 링크페이지 관계 지정
+shape	: 링크로 사용할 영역 형태 지정
+	(default, rect, circle, poly)
+target	: 링크페이지가 열릴 위치
+	(새창, 현재창, 부모창, 최상위창)
+type	: 링크 페이지의 미디어 유형 지정
+
+작성법 ( 이미지 구역을 2개로 나누어 각각 링크 설정 )
+<img src="경로" usemap="#tt">
+<map name="tt">
+	<area shape="모양" coords="00,00(시작),00,00(끝)" href="링크경로" target="위치">
+	<area shape="모양" coords="00,00(시작),00,00(끝)" href="링크경로" target="위치">
+</map>
+
+3. <audio></audio>
+-> 웹 브라우저에서 플러그인의 도움없이 음악을 재생할 수 있게 만들어주는 태그
+
+속성
+src	: 음악 파일의 경로 지정
+controls: 재생도구 출력 지정
+autoplay: 자동 재생여부 지정 (모바일 적용 불가)
+loop	: 반복여부 지정
+preload	: none, metadata, auto
+1. none : 미리 다운로드하지 않음 (페이지 로딩시 다운로드x)
+2. metadata : 기본정보만 가져옴 (크기, 첫 프레임, 오디오 길이)
+3. auto : 미리 다운로드함 (음악을 틀지 않아도 페이지 로딩 시)
+
+4. <video></video>
+-> 웹 브라우저에서 플러그인의 도움없이 미디어를 재생할 수 있게 만들어 주는 태그
+* 비디오 형식은 mp4로 지정
+
+속성
+src	: 음악 파일의 경로 지정
+controls: 재생도구 출력 지정
+autoplay: 자동 재생여부 지정 (모바일 적용 불가)
+loop	: 반복여부 지정
+preload	: 재생시 모두 불러올지 지정
+poster	: 재생 전 출력할 이미지 (경로입력)
+width	: 너비를 지정
+height	: 높이를 지정
+
+@ 하이퍼링크 태그
+
+1. <a></a>
+-> 페이지에서 해당 부분을 클릭하면 지정된 페이지로 이동하는 태그, 외부 사이트 연결,
+   문서내부에서 이동 가능
+
+속성
+href	: 링크한 페이지의 id값이나 사이트 주소 지정
+target	: 링크 페이지가 표시될 위치(새창, 현재창) 지정
+download: 링크한 페이지를 표시하지 않고 다운로드 하는것★
+rel	: 현재 페이지와의 관계 지정
+hreflang: 링크한 페이지의 언어를 지정
+type	: 페이지의 파일유형 지정
+
+작성법(기본)
+<a href="주소"> 링크표시문구 </a>
+
+작성법(이미지)
+<a href="주소"> <img src="이미지 경로"/> </a>
+
+작성법(내부에서 이동하기)
+<a href="#id"> 링크표시 문구 </a>
+
+작성법(target 이용하기)
+<a href="주소" target="창 종류"> 링크표시 문구 </a>
+
+	창 종류
+	새창	: _blank
+	현재창	: _self
+	상위창	: _parent
+	최상위창: _top
+	* _parent와 _top은 별도의 프레임이 있을 경우에 해당
+
+@ 폼 태그
+1. <form> </form>
+-> 사용자가 입력한 data를 보내는 방식과 처리할 프로그램을 정하는 태그
+
+속성
+method	: get방식과 post방식이 있음
+	 *get방식
+	 - URL창을 통하여 데이터를 보내는 방식
+	 - data 크기에 제한이 있음 (256 ~ 4096 Byte)
+	 - data 확인 가능
+	 * post방식
+	 - http header 안에 포함하여 보내는 방식
+	 - data 크기에 제한이 없음
+	 - data 확인 불가능(기술적으로만 확인 가능)
+name	: <form> 태그의 고유 이름 지정, <form>을 구분하기 위해 사용
+action	: 데이터 처리할 프로그램(페이지)를 지정
+target	: action 속성의 프로그램(페이지)를 어떻게 열 것인지를 지정
+autocomplete : 이전 입력내용 출력하는 기능, 생략하면 자동으로 출력 (default:on)
+		* 자동 저장 기능 같은 것
+		form에 autocomplete를 지정하면 form에 속하는 input들에게 모두 적용
+
+2. <input>
+-> 사용자로부터 data를 입력받기 위한 태그
+
+속성
+type	: 입력창의 타입을 결정하는 속성
+	- text		: 한 줄짜리 텍스트 입력창이 생김 (입력 그대로 보임)
+	- password	: 비밀번호 입력 창 (입력시 ㆍㆍㆍ)
+	- hidden	: 사용자에게 보이지는 않지만 값을 넣을 수 있는 창
+속성값)	- button	: 버튼 생성, 자체 별도 기능은 없고 스트립트에서 함수 연결하여 활용
+	- checkbox	: 체크박스 생성
+	- file		: 파일입력 양식 출력
+	- image		: 이미지 형태를 생성
+	- radio		: 라디오 버튼 생성
+	- submit	: 입력한 데이터를 다른 페이지로 넘기는 기능
+	- reset		: 입력한 내용을 지우는 기능
+
+(여기서부터 다시 속성)
+value		: input 요소의 기본값 표시
+name		: input마다 구별할 수 있는 명칭
+height/width	: 입력창의 높이와 넓이
+readonly	: 읽기 전용 필드
+placeholder	: 사용자 입력전 입력창 표시글
+autofocus	: 입력창 커서 표시
+required	: 필수 입력 필드 지정
+list		: <detalist>의 옵션값을 <input>안에 나열
+maxlength	: 사용자가 입력할 수 있는 글자수의 제한
+size		: 화면에 표시하는 글자수
+minlength	: 최소입력 글자 지정 (최신 크롬, 안드로이드만 지원)
+formaction	: 실행할 프로그램 연결 (submit / imange 일때 사용)
+formenctype	: 전송시 어떤 방식으로 해석할지 지정 (submit / image 일때 사용)
+formnovalidate	: 전송시 데이터가 유효한지 여부 표시
+formtarget	: 서버의 응답을 어디에 표시할 것인지 지정
+
+3. <fieldset></fieldset>, <legend></legend>
+-> 폼 요소를 그룹으로 묶는 태그, 묶은 폼 요소에 명칭을 붙이는 태그
+
+속성
+name : fieldset의 이름 지정
+form : fieldset이 속한 form의 이름 지정
+* fieldset으로 form요소를 묶고 legend를 통하여 묶음
+form요소에 명칭을 붙임
+
+4. <label></label>
+-> <form> 요소에 레이블(명칭)을 붙이기 위한 태그
+* 레이블 : 입력창 옆에 붙여 놓은 문구
+
+속성
+for	: label로 묶을 id
+form	: label이 속한 form의 id
+
+작성법1
+<label> 명칭 <input ...> </label>
+
+작성법2
+<label for="id이름"> 명칭 </label>
+<input id="id이름" type="타입">
+
+5. type - html5 양식 태그
+
+속성
+color		: 색상 선택
+date		: 년,월,일 선택 양식 생성
+datetime-local	: 년,월,일 시간 선택 양식 생성
+time		: 시간을 선택하는 양식 생성
+month		: 년,월 선택하는 양식을 생성
+week		: 주를 선택하는 양식 생성
+number		: 숫자를 입력하는 창 생성
+range		: 슬라이드 막대로 숫자 지정
+search		: 검색어 입력하는 창 출력
+		입력구에 x버튼이 생김
+tel		: 전화번호를 입력하는 창 출력
+		(자동으로 번호임을 인식)
+email		: @를 포함하여 작성해야하는 창 생성
+		(@가 있는지 확인함)
+url		: 주소값을 입력하는 창 출력
+		(http://가 있는지 확인)
+
+@ type 여러값 표현 태그
+1. <select></select>
+-> select를 만드는 태그
+
+속성
+size	: 화면에 표시될 항목 개수 지정
+multiple: 여러항목을 선택 지정, ctrl 누른상태에서 선택
+
+2. <option></option>
+-> select 안에 목록으로 표시될 태그
+속성
+value	: 옵션 선택 시 넘겨질 값
+selected: 기본으로 선택된 값
+
+작성법
+<select size="숫자" id="">
+	<option value="값">표시내용1</option>
+	<option value="값">표시내용2</option>
+	<option value="값" selected>표시내용3</option>
+</select>
+
+3. <optgroup></optgroup>
+속성
+label	: 목록제목으로 출력된 내용
+
+작성법
+<select size="숫자" id="">
+	<optgroup laberl="목록이름1">
+	   <option value="값1">표시내용1</option>
+	   <option value="값2">표시내용2</option>
+	</optgroup>
+	<optgroup laberl="목록이름2">
+	   <option value="값3">표시내용3</option>
+	   <option value="값4">표시내용4</option>
+	</optgroup>
+</select>
+
+4. <datalist></datalist>
+
+@ textarea 태그
+-> 긴 장문의 글을 작성할 때 사용하는 텍스트 영역
+
+@ progress 태그
+-> 작업 진행 상태를 나타내는 태그
+
+속성
+value	: 화면에 표시될 항목 개수 지정
+max	: 여러 항목을 선택 지정, ctrl 누른 상태에서 선택
+
+작성법
+<progress value="숫자" max="숫자">
+	<img src="경로" alt="">표시문구
+</progress>
+
+@ meter 태그
+-> 값이 차지하는 크기 표시
+
+속성
+value	: 화면에 표시될 항목 개수 지정
+min/max : 범위의 최소/최대값
+low	: 낮은 값 지정
+high	: 높은 값 지정
+optimum	: 최적의 값 지정
+
+작성법
+<meter value="표시개수" min="최소" max="최대">
